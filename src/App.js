@@ -256,6 +256,9 @@ export default function App(props) {
   function zoomOut(){
     setZoom(zoom -= 0.5);
   }
+  function reset (){
+    setZoom(zoom = 0);
+  }
   function zoominout() {
     window.addEventListener("wheel", (event) => {
       const delta = Math.sign(event.deltaY);
@@ -274,6 +277,7 @@ export default function App(props) {
   }); 
   return (
     <div class="container">
+      <button onClick={reset}>reset</button>
       <button onClick={zoomIn}>+</button>
       <button  onClick={zoomOut}>-</button>
         <div style={{zoom : zoom}}>
