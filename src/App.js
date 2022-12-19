@@ -50,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     backgroundColor: "#ECECF4"
+  },
+  scaling:{
+    transition : "zoom 0.5 ease-in"
   }
 }));
 
@@ -249,6 +252,7 @@ const theme = createMuiTheme({
 });
 
 export default function App(props) {
+
   let [zoom, setZoom] = useState(0);
   function zoomIn(){
     setZoom(zoom += 0.5);
@@ -276,21 +280,19 @@ export default function App(props) {
     zoominout()
   }); 
   return (
-    <div class="container">
+    <div className="container">
       <button onClick={reset}>reset</button>
       <button onClick={zoomIn}>+</button>
       <button  onClick={zoomOut}>-</button>
-        <div style={{zoom : zoom}}>
-    <ThemeProvider theme={theme}>
-      <Box bgcolor="background" padding={4} height="80vh">
-        <DndProvider backend={HTML5Backend}>
-          <Node o={organization} />
-        </DndProvider>
-      </Box>
-    </ThemeProvider>
+        <div style={{"zoom" : zoom , "transition" : "zoom 0.5 ease-in"}}>
+        <ThemeProvider theme={theme}>
+          <Box bgcolor="background" padding={4} height="80vh">
+            <DndProvider backend={HTML5Backend}>
+              <Node o={organization} />
+            </DndProvider>
+          </Box>
+        </ThemeProvider>
     </div>
     </div>
-  
-  
   );
 }
